@@ -1,0 +1,1 @@
+export { CredentialStorage } from './core';

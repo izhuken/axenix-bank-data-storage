@@ -1,0 +1,15 @@
+fastapi
+sqlalchemy
+pydantic[email]
+pydantic
+python-dotenv
+alembic
+uvicorn
+asyncpg
+psycopg2-binary
+passlib
+python-jose
+minio
+python-multipart
+pydantic[email]
+email-validator

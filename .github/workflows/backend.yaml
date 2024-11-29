@@ -1,0 +1,120 @@
+name: Production backend CI CD
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  action-service-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Preparing backend image
+        working-directory: ./src/backend/action
+        run: docker build -t ${{ secrets.DOCKER_BASE_REPO }}-action -f ./Dockerfile .
+
+      - name: Tagging image
+        working-directory: ./src/backend/action
+        run: docker image tag ${{ secrets.DOCKER_BASE_REPO }}-action ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-action:latest
+
+      - name: Push image
+        working-directory: ./src/backend/action
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-action:latest
+
+  event-service-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Preparing backend image
+        working-directory: ./src/backend/event
+        run: docker build -t ${{ secrets.DOCKER_BASE_REPO }}-event -f ./Dockerfile .
+
+      - name: Tagging image
+        working-directory: ./src/backend/event
+        run: docker image tag ${{ secrets.DOCKER_BASE_REPO }}-event ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-event:latest
+
+      - name: Push image
+        working-directory: ./src/backend/event
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-event:latest
+
+  point-service-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Preparing backend image
+        working-directory: ./src/backend/point
+        run: docker build -t ${{ secrets.DOCKER_BASE_REPO }}-point -f ./Dockerfile .
+
+      - name: Tagging image
+        working-directory: ./src/backend/point
+        run: docker image tag ${{ secrets.DOCKER_BASE_REPO }}-point ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-point:latest
+
+      - name: Push image
+        working-directory: ./src/backend/point
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-point:latest
+
+  task-service-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Preparing backend image
+        working-directory: ./src/backend/task
+        run: docker build -t ${{ secrets.DOCKER_BASE_REPO }}-task -f ./Dockerfile .
+
+      - name: Tagging image
+        working-directory: ./src/backend/task
+        run: docker image tag ${{ secrets.DOCKER_BASE_REPO }}-task ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-task:latest
+
+      - name: Push image
+        working-directory: ./src/backend/task
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-task:latest
+
+  user-service-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Preparing backend image
+        working-directory: ./src/backend/user
+        run: docker build -t ${{ secrets.DOCKER_BASE_REPO }}-user -f ./Dockerfile .
+
+      - name: Tagging image
+        working-directory: ./src/backend/user
+        run: docker image tag ${{ secrets.DOCKER_BASE_REPO }}-user ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-user:latest
+
+      - name: Push image
+        working-directory: ./src/backend/user
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-user:latest
