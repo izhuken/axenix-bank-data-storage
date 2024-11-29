@@ -5,6 +5,7 @@ import DefaultStyle from './defaults.module.scss';
 import EventsStyles from './events.module.scss';
 import HeaderStyles from './header.module.scss';
 import HomepageStyles from './homepage.module.scss';
+import NewStyle from './new.module.scss';
 import NotFoundStyles from './not-found.module.scss';
 import PointStyles from './point.module.scss';
 import StatStyles from './stat.module.scss';
@@ -18,6 +19,7 @@ export {
   EventsStyles,
   HeaderStyles,
   HomepageStyles,
+  NewStyle,
   NotFoundStyles,
   PointStyles,
   StatStyles,

@@ -1,45 +1,23 @@
-import { HeaderStyles } from '@/assets';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import img from '../../../public/logo.svg';
+import HeaderStyles from '../../assets/styles/header.module.scss';
 
 interface HeaderProps {}
 
-const HeaderFc: React.FC<HeaderProps> = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // useEffect(() => {
-  //   useAuthentication().then((response) => {
-  //     if (!response) return setIsAuthenticated(false);
-  //     setIsAuthenticated(true);
-  //     return;
-  //   });
-  // });
-
+export const Header: React.FC<HeaderProps> = () => {
   return (
-    <header className={HeaderStyles.header}>
-      <article className={HeaderStyles.icon}>
-        <img src='/dev-lab-icon.svg' alt='icon' />
-        <span>DevLab</span>
-      </article>
-      <article className={HeaderStyles.linkContainer}>
-        {isAuthenticated ? (
-          <>
-            <Link to='/admin'>Админ</Link>
-            <Link to='/logout'>Выход</Link>
-          </>
-        ) : (
-          <>
-            <Link to='/sign-in'>Вход</Link>
-            <Link to='/sign-up'>Регистрация</Link>
-          </>
-        )}
-      </article>
-      <article className={HeaderStyles.burger}>
-        <img src='/burger.svg' alt='Меню' onClick={() => {}} />
-        {/* <BurgerMenu isAuthenticated={isAuthenticated} /> */}
-      </article>
-    </header>
+    <>
+      <div className={HeaderStyles.header}>
+        <div className={HeaderStyles.content}>
+          <img src={img} className={HeaderStyles.logo} />
+          <div className={HeaderStyles.group}>
+            <a>Отчеты</a>
+            <a>Новый отчет</a>
+            <a>График</a>
+            <a>Выйти</a>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
-
-export const Header = React.memo(HeaderFc);
