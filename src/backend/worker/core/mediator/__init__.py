@@ -1,1 +1,1 @@
-from mediator import Mediator  # noqa
+from .mediator import Mediator  # noqa

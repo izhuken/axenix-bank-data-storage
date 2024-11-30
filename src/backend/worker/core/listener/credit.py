@@ -4,5 +4,5 @@ from .interface import IListener
 
 
 class ApproveCreditTaskListener(IListener):
-    async def receive(command: ApproveCreditCommand):
+    async def receive(self, command: ApproveCreditCommand):
         print(command)

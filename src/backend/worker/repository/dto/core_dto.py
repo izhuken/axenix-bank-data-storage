@@ -19,11 +19,8 @@ class CreateCustomerPayload:
 
 @dataclass
 class TaskTransactionPayload:
-    customer_name: str
-    agreement_type: str
-    transfer_type: str
-    transaction_date: str
-    transaction_amount: str
+    user_id: str
+    report: str
 
 
 @dataclass
@@ -34,6 +31,15 @@ class ApproveCreditPayload:
     agreement_date: str
     loan_amount: int | float
     loan_tern: int | float
+
+
+@dataclass
+class InitPayload:
+    customer_agreement: str
+    credit_products: str
+    credit_transactions: str
+    customers: str
+    transaction_types: str
 
 
 class CreateCustomerCommand(CommandDTO):
@@ -49,3 +55,8 @@ class CreateTransactionCommand(CommandDTO):
 class ApproveCreditCommand(CommandDTO):
     command: Literal["approve_credit_task"]
     payload: ApproveCreditPayload
+
+
+class InitCommand(CommandDTO):
+    command: Literal["init_task"]
+    payload: InitPayload
