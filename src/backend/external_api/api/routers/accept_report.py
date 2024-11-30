@@ -16,7 +16,7 @@ kafka_service = KafkaService()
 @accept_report_router.post("/accept_report", status_code=202)
 async def accept_report(request: Request, file: UploadFile = File(...)) -> None:
     path_file = await s3_service.upload_file_to_s3(file, request)
-    print(request.headers)
+
     jwt_token = request.headers["Authtorization"]
     user_id = jwt.decode(jwt_token, algorithms=ALGORITHM, key=SECRET_KEY)["user_id"]
 

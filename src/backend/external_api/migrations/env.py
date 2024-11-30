@@ -21,10 +21,6 @@ section = config.config_ini_section
 
 config.set_section_option(section, "DATABASE_URL", SQLALCHEMY_DATABASE_URL)
 
-# other values from the config, defined by the needs of env.py,
-# can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
-# ... etc.
 
 
 def run_migrations_offline() -> None:
