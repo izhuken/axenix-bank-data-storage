@@ -10,5 +10,6 @@ config = {
 }
 TOPIC_CREATE_USER = "user"
 TOPIC_ACCEPT_REPORT = "report"
+TOPIC_DATABASE_UPLOAD = "user"
 
 producer = Producer(config)

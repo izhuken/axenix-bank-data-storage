@@ -5,6 +5,7 @@ from .routers import (
     accept_report_router,
     create_report_router,
     new_user_router,
+    upload_database_router,
     user_external_report_router,
     user_internal_report_router,
 )
@@ -24,3 +25,4 @@ app.include_router(create_report_router, prefix="/v1")
 app.include_router(user_external_report_router, prefix="/v1")
 app.include_router(user_internal_report_router, prefix="/v1")
 app.include_router(new_user_router, prefix="/v1")
+app.include_router(upload_database_router, prefix="/v1")

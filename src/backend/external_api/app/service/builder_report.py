@@ -40,3 +40,19 @@ class BuilderReportService():
                 file_path = await self.s3_service.upload_file_to_s3_for_builder(f"{self.report_name}.xlsx", f, self.request)
                 os.remove(f"{self.report_name}.xlsx")
         return file_path
+
+
+class ParsingDatabase():
+
+    def __init__(self, file):
+        self.file = file
+        self.format_file = file.split(".")[-1]
+
+    async def parsing_database(self):
+        if self.format_file == "csv":
+            df = pd.read_csv(self.file)
+        else:
+            df = pd.read_excel(self.file)
+        
+        print(df)
+        pass
