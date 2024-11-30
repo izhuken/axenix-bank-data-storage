@@ -7,16 +7,15 @@ from ._base import BaseSchema
 
 
 class UserBase(BaseSchema):
-    username: str
+    name: str
     email: EmailStr
     phone: str
-    rating: int
     is_admin: bool = Field(default=False)
+    is_superadmin: bool = Field(default=False)
 
 
 class UserRead(UserBase):
     id: UUID
-    is_active: bool
     create_time: datetime
     update_time: datetime
 
@@ -26,11 +25,12 @@ class UserCreate(UserBase):
 
 
 class UserUpdate(BaseModel):
-    username: str | None = Field(default=None)
+    name: str | None = Field(default=None)
     email: EmailStr | None = Field(default=None)
     phone: str | None = Field(default=None)
     address: str | None = Field(default=None)
     is_admin: bool | None = Field(default=None)
+    is_superadmin: bool
 
 
 # class UserSearch(BaseModel):
