@@ -13,10 +13,16 @@ export const Header: React.FC<HeaderProps> = () => {
         <div className={HeaderStyles.content}>
           <img src={img} className={HeaderStyles.logo} />
           <div className={HeaderStyles.group}>
-            <Link to='/user/:id'>Отчеты</Link>
-            <Link to='/create'>Создать график</Link>
+            <Link to='/user/:id'>
+              <a>Отчеты</a>
+            </Link>
+            <Link to='/create'>
+              <a>Создать график</a>
+            </Link>
             <div className={HeaderStyles.logout}>
-              <Link to='/login'>Выйти</Link>
+              <Link to='/login'>
+                <a>Выйти</a>
+              </Link>
               <img src={icon} width={25} />
             </div>
           </div>

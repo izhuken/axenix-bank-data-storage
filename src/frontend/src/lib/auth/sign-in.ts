@@ -1,7 +1,8 @@
 import { AuthApiCore } from '@/api';
 import { CredentialStorage } from '@/assets';
 import { authApi } from '@/assets/config/api';
-import { TokenPair } from '@/entities';
+import { TokenPair, User } from '@/entities';
+import { UserStoreInstance } from '@/storage/store';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -36,14 +37,22 @@ export const useSignIn = () => {
       CredentialStorage.set('access', tokenPair.data.access);
       CredentialStorage.set('refresh', tokenPair.data.refresh);
 
-      return tokenPair;
+      const user = await axios.get<User>(`${authApi}/user`, {
+        headers: {
+          Authorization: `Bearer ${tokenPair.data.access}`,
+        },
+      });
+
+      UserStoreInstance.user = user.data;
+
+      return user.data;
     },
     onError: () => {
       return toast.error('Неверные данные');
     },
-    onSuccess: () => {
+    onSuccess: (user) => {
       toast.success('Успешно!');
-      return navigate('/admin/events');
+      return navigate(`/user/${user!.id}`);
     },
   });
 };

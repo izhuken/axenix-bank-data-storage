@@ -35,7 +35,7 @@ export const CreateGraf: React.FC<CreateGrafProps> = () => {
               <ChoiseGrafModal />
             </div>
 
-            <CreateForm />
+            <CreateForm isActive />
           </div>
         </div>
       </FormBaseLayout>

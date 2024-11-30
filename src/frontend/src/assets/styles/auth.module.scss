@@ -2,7 +2,10 @@
 
 .authForm {
   @include flexCenterColumn();
+  display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
   width: 95%;
   height: calc(100dvh - 91px);
@@ -11,6 +14,6 @@
 
   & > h2 {
     text-align: center;
-    @include font(1.5rem, 700)
+    @include font(1.5rem, 700);
   }
 }

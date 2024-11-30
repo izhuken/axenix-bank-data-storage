@@ -728,7 +728,7 @@
 
 "@emotion/react@^11.13.5", "@emotion/react@^11.8.1":
   version "11.13.5"
-  resolved "https://registry.npmjs.org/@emotion/react/-/react-11.13.5.tgz"
+  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.13.5.tgz#fc818ff5b13424f86501ba4d0740f343ae20b8d9"
   integrity sha512-6zeCUxUH+EPF1s+YF/2hPVODeV/7V07YU5x+2tfuRL8MdW6rv5vb2+CBEGTGwBdux0OIERcOS+RzxeK80k2DsQ==
   dependencies:
     "@babel/runtime" "^7.18.3"
@@ -758,7 +758,7 @@
 
 "@emotion/styled@^11.13.5":
   version "11.13.5"
-  resolved "https://registry.npmjs.org/@emotion/styled/-/styled-11.13.5.tgz"
+  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.13.5.tgz#0fa6602227414c5e42cf267506e3c35bae655df9"
   integrity sha512-gnOQ+nGLPvDXgIx119JqGalys64lhMdnNQA9TMxhDA4K0Hq5+++OE20Zs5GxiCV9r814xQ2K5WmtofSpHVW6BQ==
   dependencies:
     "@babel/runtime" "^7.18.3"
@@ -1042,7 +1042,7 @@
 
 "@mui/material@^6.1.9":
   version "6.1.9"
-  resolved "https://registry.npmjs.org/@mui/material/-/material-6.1.9.tgz"
+  resolved "https://registry.yarnpkg.com/@mui/material/-/material-6.1.9.tgz#e596944ea4d95f16bdc9dd83ebd1b7067e5957be"
   integrity sha512-NwqIN0bdsgzSbZd5JFcC+2ez0XW/XNs8uiV2PDHrqQ4qf/FEasFJG1z6g8JbCN0YlTrHZekVb17X0Fv0qcYJfQ==
   dependencies:
     "@babel/runtime" "^7.26.0"
@@ -1078,16 +1078,15 @@
     hoist-non-react-statics "^3.3.2"
     prop-types "^15.8.1"
 
-"@mui/styled-engine@^6.1.9":
+"@mui/styled-engine@^6.1.9", "@mui/styled-engine@npm:@mui/styled-engine-sc@latest":
   version "6.1.9"
-  resolved "https://registry.npmjs.org/@mui/styled-engine/-/styled-engine-6.1.9.tgz"
-  integrity sha512-xynSLlJRxHLzSfQaiDjkaTx8LiFb9ByVa7aOdwFnTxGWFMY1F+mkXwAUY4jDDE+MAxkWxlzzQE0wOohnsxhdQg==
+  resolved "https://registry.yarnpkg.com/@mui/styled-engine-sc/-/styled-engine-sc-6.1.9.tgz#014aa30ee5e718a4f993ecb11ae333b043756257"
+  integrity sha512-M6ue0dQNEqeWxv+pi4qX1RxWfH7U2yc0N21log1XglYu9shu0OFOsfWK9pKOeLzsPJtMdbJB+98gtlZzQ0gAfQ==
   dependencies:
     "@babel/runtime" "^7.26.0"
-    "@emotion/cache" "^11.13.5"
-    "@emotion/serialize" "^1.3.3"
-    "@emotion/sheet" "^1.4.0"
+    "@types/hoist-non-react-statics" "^3.3.5"
     csstype "^3.1.3"
+    hoist-non-react-statics "^3.3.2"
     prop-types "^15.8.1"
 
 "@mui/system@^6.1.9":
@@ -1844,10 +1843,10 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@^1.6.8:
-  version "1.7.7"
-  resolved "https://registry.npmjs.org/axios/-/axios-1.7.7.tgz"
-  integrity sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==
+axios@^1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.8.tgz#1997b1496b394c21953e68c14aaa51b7b5de3d6e"
+  integrity sha512-Uu0wb7KNqK2t5K+YQyVCLM76prD5sRFjKHbJYCP1J7JFGEQ6nN7HWn9+04LAeiJ3ji54lgS/gZCH1oxyrf1SPw==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"

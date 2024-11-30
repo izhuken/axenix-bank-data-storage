@@ -63,12 +63,9 @@ export const ModalLoad: React.FC<ModalLoadProps> = ({ isOpen, onClose }) => {
             justifyContent='center'
           >
             <Button
+              bgColor='rgba(255, 86, 2, 1)'
+              colorScheme='orange'
               width='400px'
-              backgroundColor='rgba(255, 86, 2, 1)'
-              color='white'
-              _hover='color: black'
-              mr={3}
-              variant='outline'
             >
               Загрузить
             </Button>

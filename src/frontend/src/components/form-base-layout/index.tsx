@@ -15,7 +15,16 @@ export const FormBaseLayout: FC<FormBaseLayoutProps> = ({
 }) => {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSub)} style={{ width: '100%' }}>
+      <form
+        onSubmit={methods.handleSubmit(onSub)}
+        style={{
+          width: '100%',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
         {children}
       </form>
     </FormProvider>

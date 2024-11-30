@@ -1,5 +1,6 @@
 import { UsersStyles } from '@/assets';
 import { ModalLoad } from '@/components/load-modal';
+import { UserStoreInstance } from '@/storage/store';
 import { AddIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -17,13 +18,13 @@ import React from 'react';
 
 interface TableFromProps {}
 export const TableForm: React.FC<TableFromProps> = () => {
+  const user = UserStoreInstance.user;
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <div className={UsersStyles.all_table}>
-        <hr />
         <div className={UsersStyles.table_title}>
-          <p>Выбран пользователь : Долбаебов Е.Ш.</p>
+          <p>Выбран пользователь : {user?.name}</p>
         </div>
 
         <div className={UsersStyles.table}>
@@ -33,7 +34,7 @@ export const TableForm: React.FC<TableFromProps> = () => {
                 className={UsersStyles.field}
                 border='1px solid rgba(227, 206, 170, 1)'
               >
-                Imperial to metric conversion factors
+                {/* <Pagination count={10} variant='outlined' color='primary' /> */}
               </TableCaption>
               <Thead className={UsersStyles.field}>
                 <Tr>
@@ -53,7 +54,12 @@ export const TableForm: React.FC<TableFromProps> = () => {
                 <Tr>
                   <Td border='0px solid rgba(227, 206, 170, 1)'></Td>
                   <Td border='0px solid rgba(227, 206, 170, 1)'>
-                    <Button onClick={onOpen}>
+                    <Button
+                      marginLeft={20}
+                      bgColor='rgba(255, 86, 2, 1)'
+                      colorScheme='orange'
+                      onClick={onOpen}
+                    >
                       <AddIcon />
                     </Button>
                   </Td>
