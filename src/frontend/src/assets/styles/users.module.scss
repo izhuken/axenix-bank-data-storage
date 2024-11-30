@@ -1,14 +1,37 @@
-.conteiner {
-  display: flex;
+.conteiner_table {
   width: 100%;
-  // background-color: aqua;
-  height: 100vh;
+  display: flex;
+  margin-top: 70px;
   justify-content: center;
-  .content {
+  .content_table {
+    width: 90%;
     display: flex;
-    width: 95%;
-    // background-color: aquamarine;
+
     flex-direction: column;
-    gap: 30px;
+    justify-content: center;
+    gap: 20px;
+    .table_btn {
+      display: flex;
+      padding-left: 30px;
+      gap: 10px;
+    }
+    .all_table {
+      display: flex;
+      width: 100%;
+      gap: 20px;
+      flex-direction: column;
+
+      .table_title {
+        display: flex;
+        width: 100%;
+        align-items: start;
+        padding-left: 30px;
+      }
+      .table {
+        .field {
+          background-color: rgba(254, 235, 203, 1);
+        }
+      }
+    }
   }
 }

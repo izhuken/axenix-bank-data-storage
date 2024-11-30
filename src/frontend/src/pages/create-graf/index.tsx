@@ -1,6 +1,6 @@
-import { Header } from '@/components';
 import { ChoiseGrafModal } from '@/components/choise-graf';
 import { CreateForm } from '@/components/create-form';
+import { Header } from '@/components/header';
 import React from 'react';
 import NewStyle from '../../assets/styles/new.module.scss';
 
