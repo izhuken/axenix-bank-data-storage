@@ -50,6 +50,28 @@ services:
       - traefik
       - postgresql
 
+  backend:
+    build:
+      context: ./user
+      dockerfile: ./Dockerfile
+    container_name: backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.backend.rule=Host(`api.localhost`)"
+      - "traefik.http.services.backend.loadbalancer.server.port=4000"
+    networks:
+      - web
+    restart: unless-stopped
+    environment:
+      DB_LINK: postgresql+asyncpg://postgresql:postgresql@localhost:5432/user
+      SECRET_KEY: AS;DKFJLH197H8FYOIutyo&tyouyp(8UY%&^())
+      ALGORITHM: HS256
+      MINIO_ACCESS_KEY: NCitCJJY49q8ZY4YiLP4
+      MINIO_SECRET_KEY: GdUd3KB6KJOEAP7YStpJmAO9QFX9C25EId2XXn5C
+      S3_URL: s3.labofdev.ru
+      S3_BUCKET_NAME: test-bucket
+
 networks:
   web:
     external: true
