@@ -1,3 +1,4 @@
+@import './base.module.scss';
 .conteiner_table {
   width: 100%;
   display: flex;
@@ -14,6 +15,7 @@
       display: flex;
       padding-left: 30px;
       gap: 10px;
+      @include font(16px);
     }
     .all_table {
       display: flex;
@@ -26,6 +28,7 @@
         width: 100%;
         align-items: start;
         padding-left: 30px;
+        @include font(16px);
       }
       .table {
         .field {

@@ -1,16 +1,16 @@
-import { DefaultButton, HomepageStyles } from '@/assets';
+import { HomepageStyles } from '@/assets';
 import { Header } from '@/components';
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { Button } from '@chakra-ui/react';
+import React from 'react';
 
 interface HomepageProps {}
 
 export const Homepage: React.FC<HomepageProps> = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    navigate('/login');
-  }, []);
+  // useEffect(() => {
+  //   navigate('/login');
+  // }, []);
 
   return (
     <>
@@ -25,16 +25,19 @@ export const Homepage: React.FC<HomepageProps> = () => {
             клиента, тщательном анализе рынка и создании уникальных решений,
             которые помогут достичь поставленных целей.
           </p>
-          <DefaultButton
+          {/* <DefaultButton
             onClick={() => {
               navigate('/sign-in', { replace: true });
             }}
           >
             Перейти
-          </DefaultButton>
+          </DefaultButton> */}
+          <Button background='rgba(255, 86, 2, 1)' color='black' width={400}>
+            Перейти
+          </Button>
         </div>
         <div className={HomepageStyles.imageContainer}>
-          <img src='/homepage-preview.png' alt='' />
+          <img src='/home-preview.svg' alt='' width={450} />
         </div>
       </div>
     </>

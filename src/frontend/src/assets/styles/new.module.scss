@@ -1,3 +1,5 @@
+@import './base.module.scss';
+
 .box {
   display: flex;
   width: 25%;
@@ -11,12 +13,16 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+    .title {
+      @include font(16px);
+    }
     .group {
       display: flex;
       width: 100%;
       flex-direction: column;
       align-items: center;
       gap: 12px;
+      @include font(16px);
     }
   }
 }
@@ -63,7 +69,7 @@
   width: 100%;
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 50px;
   align-items: center;
   .conteiner_create__content {
     display: flex;

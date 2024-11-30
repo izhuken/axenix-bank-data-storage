@@ -1,3 +1,4 @@
+@import './base.module.scss';
 .header {
   display: flex;
   width: 100%;
@@ -17,13 +18,16 @@
     .group {
       display: flex;
       width: 40%;
-
+      @include font(14px);
+      align-items: center;
       justify-content: space-between;
-      .logout {
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-      }
+    }
+
+    .logout {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      align-items: center;
     }
   }
 }
