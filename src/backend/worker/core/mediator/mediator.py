@@ -23,6 +23,8 @@ class Mediator:
     init_listener = InitTaskListener()
 
     async def notify(self, command: MediatorCommand):
+        print("Command received: ", command)
+
         if command.command == "create_transaction_task":
             command.payload = TaskTransactionPayload(**command.payload)
             return await self.create_transaction_listener.receive(command)
