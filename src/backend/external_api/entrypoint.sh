@@ -2,4 +2,4 @@
 
 alembic upgrade head
 
-uvicorn api.main:app --host 0.0.0.0 -p 4001
+uvicorn api.main:app --host 0.0.0.0 --port 4001
