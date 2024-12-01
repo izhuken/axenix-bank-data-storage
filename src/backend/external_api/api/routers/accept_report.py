@@ -18,7 +18,7 @@ async def accept_report(request: Request, file: UploadFile = File(...)) -> None:
     await s3_service.upload_file_to_s3(file, request)
     
     jwt_token = request.headers.get("authorization").split(" ")[1]
-    user_id = jwt.decode(jwt_token, algorithms=ALGORITHM, key=SECRET_KEY)["user_id"]
+    user_id = jwt.decode(jwt_token, algorithms=ALGORITHM, key=SECRET_KEY)
 
-    kafka_service.produce(key="create_transaction_task", value=json.dumps({"user_id": user_id, "report": file.filename}), topic = TOPIC_ACCEPT_REPORT)
+    kafka_service.produce(key="create_transaction_task", value=json.dumps({"user_id": user_id.get("sub"), "report": file.filename}), topic = TOPIC_ACCEPT_REPORT)
     return None
