@@ -1,8 +1,8 @@
-alembic,
+alembic
 asyncpg
 click
 confluent-kafka
-elasticsearch==7.17,
+elasticsearch==7.17
 email-validator
 fastapi
 jwt
@@ -16,5 +16,5 @@ python-dotenv
 python-jose
 python-multipart
 sqlalchemy
-uvicor
+uvicorn
 xlsxwriter
