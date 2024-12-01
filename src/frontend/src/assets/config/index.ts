@@ -1,1 +1,1 @@
-export const API_SERVER_URL = 'https://api.labofdev.ru/api/v1';
+export const API_SERVER_URL = 'https://https://rsue-api.labofdev.ru';

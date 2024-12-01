@@ -13,7 +13,8 @@ import { PieChart } from '../charts/pie-chart';
 interface CreateFormProps {
   isActive: boolean;
 }
-export const CreateForm: React.FC<CreateFormProps> = (isActive) => {
+
+export const CreateForm: React.FC<CreateFormProps> = () => {
   const { watch } = useFormContext<ChartFormData>();
   const chartType = watch('chartType');
 
