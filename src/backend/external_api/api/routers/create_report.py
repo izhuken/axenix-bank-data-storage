@@ -16,7 +16,7 @@ external_report_service = ExternalReportService()
 
 @create_report_router.post("/create_report", status_code=201, response_model=CreateReportResponse)
 async def create_report(data: CreateReportRequest, request: Request) -> CreateReportResponse:
-    jwt_token = request.header('Authtorization')
+    jwt_token = request.headers.get("authorization").split(" ")[1]
     user_id = jwt.decode(jwt_token, algorithms=ALGORITHM, key=SECRET_KEY)["user_id"]
 
     data_dict = data.model_dump()
