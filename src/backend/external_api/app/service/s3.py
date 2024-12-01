@@ -28,7 +28,7 @@ class BaseFileService:
                 file.file,
                 fstat(file.file.fileno()).st_size,
             )
-
+            print(result)
             result = await self._create_path_file(result, request)
         except Exception as e:
             return ErrorResponse(detail=str(e), status_code=400)
@@ -52,6 +52,7 @@ class BaseFileService:
             response_file = self._minio_client.get_object(
                 file._bucket_name, file.__dict__.get("_object_name")
             )
+            print(response_file.__dict__)
             files_path = f"{request.url.scheme}s://{self._minio_host}{response_file.__dict__.get('_request_url')}"
         except S3Error as e:
             return ErrorResponse(detail=str(e), status_code=404)

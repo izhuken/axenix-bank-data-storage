@@ -5,6 +5,7 @@ from .routers import (
     accept_report_router,
     create_report_router,
     new_user_router,
+    search_router,
     upload_database_router,
     user_external_report_router,
     user_internal_report_router,
@@ -21,6 +22,7 @@ app.add_middleware(
 )
 
 app.include_router(accept_report_router, prefix="/v1")
+app.include_router(search_router, prefix="/v1")
 app.include_router(create_report_router, prefix="/v1")
 app.include_router(user_external_report_router, prefix="/v1")
 app.include_router(user_internal_report_router, prefix="/v1")

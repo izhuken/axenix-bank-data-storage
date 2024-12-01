@@ -16,10 +16,11 @@ kafka_service = KafkaService()
 async def new_user(data: CreateCustomerRequest) -> None:
     kafka_service.produce(key="report", 
                         value=json.dumps({"command": "create_customer_task", 
-                                        "payload": {"Name": data["name"],
-                                                    "DateOfBirth": data["date_of_birth"],
-                                                    "RegistrationDate": data["registration_date"],
-                                                    "Tin": data["tin"],
-                                                    "ContactInfo": data["contact_info"],
-                                                    "CustomerTypeId": data["customer_type_id"]}}), topic=TOPIC_CREATE_USER)
+                                        "payload": {"customer_type_id": data["customer_type_id"],
+                                                    "name": data["name"],
+                                                    "date_of_birth": data["date_of_birth"],
+                                                    "registration_date": data["registration_date"],
+                                                    "tin": data["tin"],
+                                                    "contact_info": data["contact_info"],
+                                                    }}), topic=TOPIC_CREATE_USER)
     return None
