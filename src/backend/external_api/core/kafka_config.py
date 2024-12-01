@@ -1,11 +1,12 @@
-from os import getenv as env
 
 from confluent_kafka import Producer
 from dotenv import load_dotenv
 
+from .config import KAFKA_URL
+
 load_dotenv()
 config = {
-    "bootstrap.servers": env("KAFKA_URL"),
+    "bootstrap.servers": KAFKA_URL,
     "acks": "all",
 }
 TOPIC_CREATE_USER = "user"
