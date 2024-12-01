@@ -12,12 +12,13 @@ class ConsumerService:
         self.consumer = Consumer(config)
 
     def add_subscribe(self, topic):
-        self.consumer.subscribe([topic])
+        self.consumer.subscribe(topic)
 
     async def listen(self):
         try:
             while True:
                 msg = self.consumer.poll(1)
+                print(msg)
                 if msg is None:
                     pass
                 elif msg.error():

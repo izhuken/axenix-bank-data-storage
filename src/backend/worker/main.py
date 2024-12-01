@@ -14,8 +14,7 @@ async def main():
     )
     print("kafka configured")
 
-    kafka_consumer.add_subscribe("user")
-    kafka_consumer.add_subscribe("report")
+    kafka_consumer.add_subscribe(["user", "report"])
 
     print("kafka subscription added")
 
