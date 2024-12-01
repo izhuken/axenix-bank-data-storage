@@ -27,10 +27,11 @@ class FactRepository:
     async def create(self, data: dict) -> SuccessDTO[Fact] | ErrorDTO[str | int]:
         try:
             async with SESSION() as session:
-                new_transaction_type = Fact(**data)
-                session.add(new_transaction_type)
+                fact = Fact(**data)
+                session.add(fact)
                 await session.commit()
-                return SuccessDTO[bool](True)
+                await session.refresh(fact)
+                return SuccessDTO[Fact](fact)
         except IntegrityError as e:
             print(e)
             return ErrorDTO("Data already exists", 400)
@@ -42,7 +43,6 @@ class FactRepository:
             async with SESSION() as session:
                 count_query = select(func.count(CreditTransaction.id))
                 transaction_count = (await session.execute(count_query)).scalar()
-                print(transaction_count)
                 new_transaction_payload["transaction_id"] = transaction_count + 1
                 session.add(CreditTransaction(**new_transaction_payload))
                 query = (
@@ -50,6 +50,9 @@ class FactRepository:
                 )
                 await session.execute(query)
                 await session.commit()
+                select_query = select(Fact).where(Fact.id == fact_id)
+                data = (await session.execute(select_query)).scalar()
+                return SuccessDTO[Fact](data)
         except IntegrityError as e:
             print(e)
             return ErrorDTO("", 400)

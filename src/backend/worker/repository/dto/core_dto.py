@@ -10,8 +10,9 @@ class CommandDTO:
 
 @dataclass
 class CreateCustomerPayload:
+    customer_type_id: int
     name: str
-    date_of_birth: str | None
+    date_of_birth: str
     registration_date: str
     tin: str
     contact_info: str

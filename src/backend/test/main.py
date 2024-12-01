@@ -33,5 +33,36 @@ async def aue():
         callback=delivery_callback,
     )
 
+    producer.produce(
+        topic,
+        dumps(
+            {
+                "customer_agreement": "str",
+                "credit_products": "str",
+                "credit_transactions": "str",
+                "customers": "str",
+                "transaction_types": "str",
+            }
+        ),
+        "init_task",
+        callback=delivery_callback,
+    )
+
+    producer.produce(
+        topic,
+        dumps(
+            {
+                "customer_type_id": 1,
+                "name": "Тестовый Тест Тестович",
+                "date_of_birth": "1994-01-12",
+                "registration_date": "2024-01-12",
+                "tin": "122333213",
+                "contact_info": "+7 (912) 234-12-23",
+            }
+        ),
+        "create_customer_task",
+        callback=delivery_callback,
+    )
+
     producer.poll(1)
     producer.flush()

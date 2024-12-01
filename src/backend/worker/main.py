@@ -1,19 +1,21 @@
 from asyncio import run
 
 from consumer.kafka import ConsumerService
+from core.settings import KAFKA_LINK
 
 
 async def main():
     kafka_consumer = ConsumerService(
         {
-            "bootstrap.servers": "localhost:9092",
+            "bootstrap.servers": KAFKA_LINK,
             "group.id": "all",
             "auto.offset.reset": "earliest",
         }
     )
     print("kafka configured")
 
-    kafka_consumer.add_subscribe("tests")
+    kafka_consumer.add_subscribe("user")
+    kafka_consumer.add_subscribe("report")
 
     print("kafka subscription added")
 

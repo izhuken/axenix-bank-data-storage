@@ -1,4 +1,4 @@
 from .credit import ApproveCreditTaskListener  # noqa
 from .transaction import TransactionCreationTaskListener  # noqa
-from .user import UserCreationListener  # noqa
+from .customer import CustomerCreationListener  # noqa
 from .initializator import InitTaskListener  # noqa

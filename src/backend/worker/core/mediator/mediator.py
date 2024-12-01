@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 
-from repository.dto import InitPayload, TaskTransactionPayload
+from repository.dto import CreateCustomerPayload, InitPayload, TaskTransactionPayload
 
 from core.listener import (
     ApproveCreditTaskListener,
+    CustomerCreationListener,
     InitTaskListener,
     TransactionCreationTaskListener,
-    UserCreationListener,
 )
 
 
@@ -19,7 +19,7 @@ class MediatorCommand:
 class Mediator:
     create_transaction_listener = TransactionCreationTaskListener()
     approve_credit_listener = ApproveCreditTaskListener()
-    create_user_listener = UserCreationListener()
+    create_user_listener = CustomerCreationListener()
     init_listener = InitTaskListener()
 
     async def notify(self, command: MediatorCommand):
@@ -27,11 +27,9 @@ class Mediator:
             command.payload = TaskTransactionPayload(**command.payload)
             return await self.create_transaction_listener.receive(command)
 
-        if command.command == "approve_credit_task":
-            return await self.approve_credit_listener.receive(command)
-
-        if command.command == "create_transaction_task":
-            return await self.create_transaction_listener.receive(command)
+        if command.command == "create_customer_task":
+            command.payload = CreateCustomerPayload(**command.payload)
+            return await self.create_user_listener.receive(command)
 
         if command.command == "init_task":
             command.payload = InitPayload(**command.payload)

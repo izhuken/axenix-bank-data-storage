@@ -1,29 +1,32 @@
 FROM python:3.12.1-slim-bullseye as builder
-WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+WORKDIR /app
+
 RUN apt update -y && \
     apt install -y python3-dev \
     gcc \
-    musl-dev \
-    postgresql-dev
+    musl-dev
 
-COPY ./requirements.txt ./
+COPY ./requirements.txt /app/requirements.txt
 
+RUN pip install --upgrade pip
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
 
-FROM python:3.12-alpine
+FROM python:3.12.1-slim-bullseye
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
-
-RUN apk add libpq
 
 COPY --from=builder /app/wheels /wheels
 COPY --from=builder /app/requirements.txt .
 
 RUN pip install --no-cache /wheels/*
+
 COPY ./ ./
 
 RUN chmod +x /app/entrypoint.sh

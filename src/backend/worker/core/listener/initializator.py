@@ -11,8 +11,11 @@ from repository.db import (
     TransactionTypeRepository,
 )
 from repository.dto import CreateTransactionCommand
+from service.elastic_service import ElasticSearchService
 
 from core.models import CreditAgreement
+from core.models.elastic import ELASTIC_MODEL
+from core.settings.elastic import _es
 from core.settings.s3 import minio_client
 from core.settings.settings import S3_BUCKET_NAME
 
@@ -26,6 +29,7 @@ class InitTaskListener(IListener):
     credit_agreement_repo = CreditAgreementRepository()
     credit_transaction_repo = CreditTransactionRepository()
     fact_repository = FactRepository()
+    elastic_service = ElasticSearchService(_es, "fact", "fact")
 
     async def receive(self, _: CreateTransactionCommand):
         await self._create_transaction_types()
@@ -37,6 +41,11 @@ class InitTaskListener(IListener):
 
     async def _create_fact_table(self):
         start = time()
+
+        try:
+            self.elastic_service.create_index(ELASTIC_MODEL)
+        except:
+            print("Elastic index already exists")
 
         for counter in range(100, 2600, 100):
             agreements = await self.credit_agreement_repo.get_all(100, counter - 100)
@@ -77,7 +86,29 @@ class InitTaskListener(IListener):
             "user_phone": agreement.customer.contact_info,
         }
 
-        await self.fact_repository.create(fact)
+        db_fact = await self.fact_repository.create(fact)
+
+        if not hasattr(db_fact, "data"):
+            return
+
+        elastic_payload = {
+            "credit_sum": db_fact.data.credit_sum,
+            "payment_amount": db_fact.data.payment_amount,
+            "made_payments": db_fact.data.made_payments,
+            "calculated_payment_number": db_fact.data.calculated_payment_number,
+            "is_closed": db_fact.data.is_closed,
+            "contract_number": db_fact.data.contract_number,
+            "created_at": db_fact.data.created_at,
+            "closed_at": db_fact.data.closed_at,
+            "contract_id": db_fact.data.contract_id,
+            "user_id": db_fact.data.user_id,
+            "user_name": db_fact.data.user_name,
+            "user_tin": db_fact.data.user_tin,
+            "user_phone": db_fact.data.user_phone,
+            "id_fact": db_fact.data.id,
+        }
+
+        self.elastic_service.insert_data(elastic_payload)
 
     async def _create_credit_transactions(self):
         data = minio_client.get_object(S3_BUCKET_NAME, "CreditTransactions.csv")

@@ -133,6 +133,19 @@ wheels = [
 ]
 
 [[package]]
+name = "elasticsearch"
+version = "7.17.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8d/e7/19fdb7c8a148adbd020bcc2c0e35874b66776e01e4828c284225d8e1bcb5/elasticsearch-7.17.0.tar.gz", hash = "sha256:406013783cc36af28ea36cd58cf184cd646530e47eea41336b386322fb878b59", size = 241536 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8b/ae/051943fc4dc456dfa7b87d462333edd31a19ecfab1c821a4cdf891ad4a45/elasticsearch-7.17.0-py2.py3-none-any.whl", hash = "sha256:ccbf3d1651eb79798a55c1e84b8be850db3873f0329e74086a2cfba37e8c288c", size = 385711 },
+]
+
+[[package]]
 name = "fsspec"
 version = "2024.10.0"
 source = { registry = "https://pypi.org/simple" }
@@ -429,11 +442,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.2.3"
+version = "1.26.20"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ed/63/22ba4ebfe7430b76388e7cd448d5478814d3032121827c12a2cc287e2260/urllib3-2.2.3.tar.gz", hash = "sha256:e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9", size = 300677 }
+sdist = { url = "https://files.pythonhosted.org/packages/e4/e8/6ff5e6bc22095cfc59b6ea711b687e2b7ed4bdb373f7eeec370a97d7392f/urllib3-1.26.20.tar.gz", hash = "sha256:40c2dc0c681e47eb8f90e7e27bf6ff7df2e677421fd46756da1161c39ca70d32", size = 307380 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ce/d9/5f4c13cecde62396b0d3fe530a50ccea91e7dfc1ccf0e09c228841bb5ba8/urllib3-2.2.3-py3-none-any.whl", hash = "sha256:ca899ca043dcb1bafa3e262d73aa25c465bfb49e0bd9dd5d59f1d0acba2f8fac", size = 126338 },
+    { url = "https://files.pythonhosted.org/packages/33/cf/8435d5a7159e2a9c83a95896ed596f68cf798005fe107cc655b5c5c14704/urllib3-1.26.20-py2.py3-none-any.whl", hash = "sha256:0ed14ccfbf1c30a9072c7ca157e4319b70d65f623e91e7b32fadb2853431016e", size = 144225 },
 ]
 
 [[package]]
@@ -444,6 +457,7 @@ dependencies = [
     { name = "alembic" },
     { name = "asyncpg" },
     { name = "confluent-kafka" },
+    { name = "elasticsearch" },
     { name = "fsspec" },
     { name = "minio" },
     { name = "pandas" },
@@ -456,6 +470,7 @@ requires-dist = [
     { name = "alembic", specifier = ">=1.14.0" },
     { name = "asyncpg", specifier = ">=0.30.0" },
     { name = "confluent-kafka", specifier = ">=2.6.1" },
+    { name = "elasticsearch", specifier = "==7.17.0" },
     { name = "fsspec", specifier = ">=2024.10.0" },
     { name = "minio", specifier = ">=7.2.12" },
     { name = "pandas", specifier = ">=2.2.3" },
