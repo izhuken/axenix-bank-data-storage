@@ -4,6 +4,29 @@ on:
     branches: ["main"]
 
 jobs:
+  external-api-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Preparing backend image
+        working-directory: ./src/backend/external_api
+        run: docker build -t ${{ secrets.DOCKER_BASE_REPO }}-external-api -f ./Dockerfile .
+
+      - name: Tagging image
+        working-directory: ./src/backend/external_api
+        run: docker image tag ${{ secrets.DOCKER_BASE_REPO }}-external-api ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-external-api:latest
+
+      - name: Push image
+        working-directory: ./src/backend/external_api
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_BASE_REPO }}-external-api:latest
+
   worker-build:
     runs-on: ubuntu-latest
     steps:
